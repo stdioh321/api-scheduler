@@ -2,7 +2,8 @@ import { Transform } from 'class-transformer';
 import { MinLength, IsOptional, IsDate, IsEnum, IsJSON } from 'class-validator';
 import { HttpMethods } from 'src/enum/http-methods';
 import { UtilsService } from 'src/services/utils/utils.service';
-export default class ScheduelDto {
+
+export default class ScheduelForm {
   @MinLength(3)
   url: string = null;
 

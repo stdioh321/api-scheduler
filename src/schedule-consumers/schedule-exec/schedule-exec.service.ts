@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Job } from 'agenda';
-import ScheduelDto from 'src/dtos/schedule.dto';
+import ScheduelDto from 'src/dtos/forms/schedule.form';
 import configuration from 'src/config/config';
 import { AgendaConnectionService } from '../../services/agenda-connection/agenda-connection.service';
 

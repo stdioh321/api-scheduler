@@ -6,7 +6,7 @@ import { AgendaConnectionService } from '../agenda-connection/agenda-connection.
 export class ScheduleService {
   constructor(private readonly agendaService: AgendaConnectionService) {}
 
-  async schedule(executionDate: Date, name: string, body: any) {
+  async schedule(executionDate: Date, name: string, body?: any) {
     const job: Job = await this.agendaService.agenda.schedule(
       executionDate,
       name,

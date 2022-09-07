@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { Job } from 'agenda';
-import ScheduelDto from 'src/dtos/schedule.dto';
+import ScheduelForm from 'src/dtos/forms/schedule.form';
 import configuration from 'src/config/config';
 import { ScheduleService } from 'src/services/schedule/schedule.service';
 
@@ -9,7 +9,7 @@ export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
 
   @Post()
-  async post(@Body() body: ScheduelDto) {
+  async post(@Body() body: ScheduelForm) {
     const job: Job = await this.scheduleService.schedule(
       body.executionDatetime,
       configuration().agenda.name01,
