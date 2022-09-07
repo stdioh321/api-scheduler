@@ -8,6 +8,9 @@ function config() {
         url: process.env.DB_SCHEDULER_URL,
       },
     },
+    agenda: {
+      name01: process.env.AGENDA_NAME_01 || 'name_01',
+    },
   };
 }
 export function envFile(): string {

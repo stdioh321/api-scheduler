@@ -1,4 +1,4 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -18,4 +18,5 @@ function setupGlobals(app: INestApplication) {
   app.setGlobalPrefix('api', {
     exclude: [],
   });
+  app.useGlobalPipes(new ValidationPipe());
 }

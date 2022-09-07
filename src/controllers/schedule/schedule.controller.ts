@@ -1,22 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
-import { Agenda } from 'agenda';
-import configuration from '../../config/config';
+import { Body, Controller, Post } from '@nestjs/common';
+import { Job } from 'agenda';
+import ScheduelDto from 'src/dtos/schedule.dto';
+import configuration from 'src/config/config';
+import { ScheduleService } from 'src/services/schedule/schedule.service';
 
 @Controller('schedule')
 export class ScheduleController {
-  private readonly agenda: Agenda;
-  constructor() {
-    this.agenda = new Agenda({
-      db: {
-        address: configuration().dbs.scheduler.url,
-      },
-    });
-  }
-  @Get()
-  get() {
-    const t = new Date();
-    t.setSeconds(t.getSeconds() + 20);
-    this.agenda.schedule(t, 'abc', { to: 'email@teste.com' });
-    return 'ok';
+  constructor(private readonly scheduleService: ScheduleService) {}
+
+  @Post()
+  async post(@Body() body: ScheduelDto) {
+    const job: Job = await this.scheduleService.schedule(
+      body.executionDatetime,
+      configuration().agenda.name01,
+      body,
+    );
+    return job.attrs._id;
   }
 }
