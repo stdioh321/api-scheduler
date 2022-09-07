@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
+
 import configuration, { envFile } from './config/config';
+import { ScheduleController } from './controllers/schedule/schedule.controller';
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import configuration, { envFile } from './config/config';
       load: [configuration],
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [ScheduleController],
+  providers: [],
 })
 export class AppModule {}
