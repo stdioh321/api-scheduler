@@ -1,12 +1,14 @@
 function config() {
   return {
     port: parseInt(process.env.PORT) || 3000,
-    serviceName: process.env.npm_package_name,
+    serviceName: process.env.npm_package_name || 'schedule-api',
     nodeEnv: process.env.NODE_ENV,
     dbs: {
       scheduler: {
-        url: process.env.DB_SCHEDULER_URL,
-        name: process.env.DB_SCHEDULER_NAME,
+        url:
+          process.env.DB_SCHEDULER_URL ||
+          'mongodb://localhost:27017/scheduler?authSource=admin',
+        name: process.env.DB_SCHEDULER_NAME || 'scheduler',
       },
     },
     agenda: {
