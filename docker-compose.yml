@@ -1,13 +1,28 @@
 version: '3.8'
 services:
+  app1:
+    container_name: app1
+    restart: unless-stopped
+    image: node:16.17.0
+    ports:
+      - 3000:3000
+    network_mode: host
+    command: >
+      bash -c "npm install -f
+      && npm run start:dev-debug"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      mongo:
+        condition: service_healthy
   redis:
       container_name: redis
       image: redis:7.0.4
       restart: unless-stopped
       ports:
         - "6379:6379"
-      networks:
-        - app-network
+      network_mode: host
   mongo:
       container_name: mongo
       image: mongo:4.0.11
@@ -19,10 +34,9 @@ services:
         - "27017:27017"
       logging:
         driver: none
-      networks:
-        - app-network
+      network_mode: host
       healthcheck:
-        test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+        test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
         interval: 10s
         timeout: 10s
         retries: 5

@@ -10,7 +10,6 @@ import { ScheduleExecService } from './schedule-consumers/schedule-exec/schedule
 import { AgendaConnectionService } from './services/agenda-connection/agenda-connection.service';
 import { UtilsService } from './services/utils/utils.service';
 import { ScheduleService } from './services/schedule/schedule.service';
-import { User } from './models/user.entity';
 
 @Module({
   imports: [
@@ -20,7 +19,6 @@ import { User } from './models/user.entity';
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync(typeormConfig),
-    TypeOrmModule.forFeature([User]),
   ],
   controllers: [ScheduleController],
   providers: [

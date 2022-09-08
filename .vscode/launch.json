@@ -16,6 +16,17 @@
         "delay": 2000,
         "maxAttempts": 10
       },
+    },
+    {
+      "name": "Docker: Attach Nest",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      "protocol": "inspector",
+      "restart": true
     }
   ]
 }
