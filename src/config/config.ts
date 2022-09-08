@@ -6,6 +6,7 @@ function config() {
     dbs: {
       scheduler: {
         url: process.env.DB_SCHEDULER_URL,
+        name: process.env.DB_SCHEDULER_NAME,
       },
     },
     agenda: {
